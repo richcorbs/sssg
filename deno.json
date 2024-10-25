@@ -1,0 +1,16 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --dev",
+    "dp": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --deploy --production",
+    "ds": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --deploy --staging",
+    "r": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --register --domain=domain1.local"
+  },
+  "imports": {
+    "@ptm/mm-mark": "jsr:@ptm/mm-mark@^0.2.22",
+    "@std/async": "jsr:@std/async@^1.0.6",
+    "@std/cli": "jsr:@std/cli@^1.0.6",
+    "@std/fs": "jsr:@std/fs@^1.0.4",
+    "@std/path": "jsr:@std/path@^1.0.6",
+    "@std/tar": "jsr:@std/tar@^0.1.2"
+  }
+}

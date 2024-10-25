@@ -1,0 +1,137 @@
+<!doctype html>
+<html class="gridlines" data-theme="light">
+  <head>
+    <title>SSSG</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- <link rel="stylesheet" href="/assets/css/pico.min.css" />
+    <link rel="stylesheet" href="/assets/css/pico.colors.min.css" /> -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/open-props" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/open-props/normalize.min.css"
+    /> -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://unpkg.com/open-props/buttons.min.css"
+    /> -->
+
+    <link href="/assets/css/basic.css" rel="stylesheet" />
+    <!-- <link href="/assets/css/custom.css" rel="stylesheet" /> -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/gh/vanjs-org/van/public/van-1.2.8.nomodule.min.js"
+    ></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </head>
+
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li>
+            <a href="/">simple</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://picocss.com" target="_blank" class="contrast"
+              >Pico CSS</a
+            >
+          </li>
+          <li>
+            <a href="https://alpinejs.dev" target="_blank" class="contrast"
+              >Alpine JS</a
+            >
+          </li>
+          <li>
+            <a href="https://vanjs.org" target="_blank" class="contrast"
+              >VanJS</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      
+  <main class="container">
+    <section class="grid" style="--pico-grid-column-gap: 4rem">
+      <div style="--c: 1">
+        <h1 style="margin-top: 8rem; text-wrap: balance">
+          There are two ways to deploy your site.
+        </h1>
+      </div>
+      <div style="--c: 1">
+        <img src="/assets/images/launch.svg" alt="" />
+      </div>
+    </section>
+    <section
+      class="grid"
+      style="margin-top: 4rem; --pico-grid-column-gap: 4rem"
+    >
+      <div style="--c: 1">
+        <h2>1. manually build and deploy</h2>
+        <ul>
+          <li>
+            Run <code>sssg --build</code> in your project directory to build
+            your site locally in the <code>./dist</code> directory.
+          </li>
+          <li>
+            <p>
+              Run a script of your creation to copy/upload the contents of the
+              <code>./dist</code> directory to the appropriate directory on your
+              server/host.
+            </p>
+            <p>
+              You can use scp, rsync, ftp, or any other method that you prefer.
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div style="--c: 1">
+        <h2>2. deploy to our servers</h2>
+        <p>
+          Deploying to our servers is the easiest way to get your site online.
+          It involves a single command:<br />
+          <code>sssg --deploy [optional-domain-name]</code>.
+        </p>
+        <ul>
+          <li>TODO: Include about deploying to staging or production.</li>
+          <li>
+            <p>
+              If you want to use a <b>custom domain name</b>, run:<br />
+              <code>sssg --deploy www.my-custom-domain.com</code>.<br />
+              In order for SSL to work properly, you must point your DNS at our
+              servers for the custom domain name that you choose. The IP address
+              is
+              <code>1.1.1.1</code>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If you want to use <b>a subdomain of your choosing</b>, run:<br />
+              <code>sssg --deploy my-subdomain.sssg.live</code><br />
+              where
+              <code>my-subdomain</code> is something you want to use. All
+              subdomains are on the <code>sssg.live</code> domain.
+            </p>
+          </li>
+          <li>
+            <p>
+              If you want to use a <b>random subdomain</b>, run:<br />
+              <code>sssg --deploy</code> and we'll create a subdomain for you.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+
+    </main>
+
+    <footer>
+      <h4>simple, 2024</h4>
+    </footer>
+  </body>
+</html>

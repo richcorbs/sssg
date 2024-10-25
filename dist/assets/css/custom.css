@@ -1,0 +1,123 @@
+/* Use GDPR friendly fonts
+   Same fonts as from google fonts but GDPR-friendly.
+   Just change the host in the google fonts url to match this one. */
+@import url(https://api.fonts.coollabs.io/css?family=Inter:100,300,400,500,700,900);
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 18px;
+  font-family: var(--font-sans);
+}
+
+.container {
+  width: max(100% - 50rem, 1200px);
+  margin-inline: auto;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  gap: 2rem;
+}
+
+nav li.logo {
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+ul,
+ol {
+  padding-inline: 2rem;
+}
+
+li {
+  padding-block: 0.5rem;
+}
+
+a {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--blue-9);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 2rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block: 1rem;
+}
+
+button {
+  padding: var(--size-1) var(--size-3);
+}
+
+p {
+  padding-block: var(--size-1);
+}
+
+section.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-block: 4rem 6rem;
+  margin-inline: auto;
+  text-align: center;
+  max-width: 78ch;
+  & h1 {
+    font-size: 3em;
+    line-height: 1.1;
+    text-wrap: balance;
+    margin-inline: auto;
+    margin: 0;
+    max-width: 78ch;
+  }
+  & h4 {
+    text-wrap: balance;
+    font-weight: var(--font-weight-5);
+    margin-inline: auto;
+    width: 50ch;
+  }
+}
+
+.eyebrow {
+  font-weight: var(--font-weight-7);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 78ch;
+}
+
+.number {
+  font-variant-numeric: tabular-nums;
+}
+
+footer {
+  margin-block: 4rem;
+  max-width: var(--size-content-2);
+  margin-inline: auto;
+  text-align: center;
+}
