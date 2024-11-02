@@ -2,9 +2,10 @@
   "version": "4",
   "specifiers": {
     "jsr:@ptm/mm-mark@~0.2.22": "0.2.22",
-    "jsr:@std/async@^1.0.6": "1.0.6",
+    "jsr:@std/async@^1.0.8": "1.0.8",
     "jsr:@std/cli@^1.0.6": "1.0.6",
     "jsr:@std/fs@^1.0.4": "1.0.4",
+    "jsr:@std/media-types@^1.0.3": "1.0.3",
     "jsr:@std/path@^1.0.6": "1.0.6",
     "jsr:@std/streams@^1.0.7": "1.0.7",
     "jsr:@std/tar@*": "0.1.2",
@@ -12,18 +13,24 @@
     "npm:@types/node@*": "22.5.4",
     "npm:c12@1.5.1": "1.5.1",
     "npm:iconv-lite@0.6.3": "0.6.3",
+    "npm:js-yaml@^4.0.9": "4.1.0",
     "npm:jschardet@3.0.0": "3.0.0",
+    "npm:showdown-mathjax@^1.0.7": "1.0.7",
+    "npm:showdown-prism@^1.0.7": "1.0.8",
     "npm:showdown@^2.0.6": "2.1.0"
   },
   "jsr": {
     "@ptm/mm-mark@0.2.22": {
       "integrity": "1e5dc732c172049f8189486091857a57f389c7cc532f960f96c87b783be2d28a",
       "dependencies": [
-        "npm:showdown"
+        "npm:js-yaml",
+        "npm:showdown",
+        "npm:showdown-mathjax",
+        "npm:showdown-prism"
       ]
     },
-    "@std/async@1.0.6": {
-      "integrity": "6d262156dd35c4a72ee1a2f8679be40264f370cfb92e2e13d4eca2ae05e16f34"
+    "@std/async@1.0.8": {
+      "integrity": "c057c5211a0f1d12e7dcd111ab430091301b8d64b4250052a79d277383bc3ba7"
     },
     "@std/cli@1.0.6": {
       "integrity": "d22d8b38c66c666d7ad1f2a66c5b122da1704f985d3c47f01129f05abb6c5d3d"
@@ -33,6 +40,9 @@
       "dependencies": [
         "jsr:@std/path"
       ]
+    },
+    "@std/media-types@1.0.3": {
+      "integrity": "b12d30a7852f7578f4d210622df713bbfd1cbdd9b4ec2eaf5c1845ab70bab159"
     },
     "@std/path@1.0.6": {
       "integrity": "ab2c55f902b380cf28e0eec501b4906e4c1960d13f00e11cfbcd21de15f18fed"
@@ -63,6 +73,9 @@
         "normalize-path",
         "picomatch"
       ]
+    },
+    "argparse@2.0.1": {
+      "integrity": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="
     },
     "binary-extensions@2.3.0": {
       "integrity": "sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw=="
@@ -188,6 +201,9 @@
         "is-glob"
       ]
     },
+    "he@1.2.0": {
+      "integrity": "sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw=="
+    },
     "human-signals@5.0.0": {
       "integrity": "sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ=="
     },
@@ -223,6 +239,12 @@
     },
     "jiti@1.21.6": {
       "integrity": "sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w=="
+    },
+    "js-yaml@4.1.0": {
+      "integrity": "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==",
+      "dependencies": [
+        "argparse"
+      ]
     },
     "jschardet@3.0.0": {
       "integrity": "sha512-lJH6tJ77V8Nzd5QWRkFYCLc13a3vADkh3r/Fi8HupZGWk2OVVDfnZP8V/VgQgZ+lzW0kG2UGb5hFgt3V3ndotQ=="
@@ -316,6 +338,9 @@
         "pathe"
       ]
     },
+    "prismjs@1.29.0": {
+      "integrity": "sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q=="
+    },
     "rc9@2.1.2": {
       "integrity": "sha512-btXCnMmRIBINM2LDZoEmOogIZU7Qe7zn4BpomSKZ/ykbLObuBdvG+mFq11DL6fjH1DRwHhrlgtYWG96bJiC7Cg==",
       "dependencies": [
@@ -340,6 +365,20 @@
     },
     "shebang-regex@3.0.0": {
       "integrity": "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A=="
+    },
+    "showdown-mathjax@1.0.7": {
+      "integrity": "sha512-nJK/xXPRTfviv1A8Ax6UB0FtuifNHWIlkQofNRhq5SKmSSUtrA78S4jRZRWHUsYRaNdzIaJ57WoQcmP9Zp4WsA==",
+      "dependencies": [
+        "showdown"
+      ]
+    },
+    "showdown-prism@1.0.8": {
+      "integrity": "sha512-+kHR39fMLtArcY/Oj4O1KNq3lu1I3D0ktqaRGl/Dv6uA8xh+de2cr0++ZqODcIvqG60mOZPDSIOtNqxynW4Bwg==",
+      "dependencies": [
+        "he",
+        "prismjs",
+        "showdown"
+      ]
     },
     "showdown@2.1.0": {
       "integrity": "sha512-/6NVYu4U819R2pUIk79n67SYgJHWCce0a5xTP979WbNp0FL9MN1I1QK662IDU1b6JzKTvmhgI7T7JYIxBi3kMQ==",
@@ -926,9 +965,10 @@
   "workspace": {
     "dependencies": [
       "jsr:@ptm/mm-mark@~0.2.22",
-      "jsr:@std/async@^1.0.6",
+      "jsr:@std/async@^1.0.8",
       "jsr:@std/cli@^1.0.6",
       "jsr:@std/fs@^1.0.4",
+      "jsr:@std/media-types@^1.0.3",
       "jsr:@std/path@^1.0.6",
       "jsr:@std/tar@~0.1.2"
     ]
