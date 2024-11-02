@@ -1,4 +1,5 @@
-dist
-.git
-.zed
+dist/*
+src/*
+.git/*
+.zed/*
 .sssg.json

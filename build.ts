@@ -5,7 +5,6 @@ import { join } from "@std/path/join";
 import { ensureDir } from "@std/fs/ensure-dir";
 import { Asset, Layout, Page, Snippet } from "./types.ts";
 import { mdConverter } from "@ptm/mm-mark";
-import { relative } from "@std/path/relative";
 
 const SRC = "src";
 export const DIST = "dist";
@@ -35,6 +34,7 @@ export async function buildDistStructure() {
 }
 
 export async function build() {
+  console.log("Building...");
   initializeDist();
   await buildDistStructure();
   await initializeCache();
@@ -42,8 +42,8 @@ export async function build() {
 }
 
 export async function buildPages() {
-  await initializeLayouts();
-  await initializeSnippets();
+  // await initializeLayouts();
+  // await initializeSnippets();
   for await (const dirEntry of walk(SRC)) {
     const fullDirEntryPath: string = resolve(join(dirEntry.path));
     if (dirEntry.isDirectory) continue;
@@ -54,7 +54,7 @@ export async function buildPages() {
 }
 
 export async function buildPage(path: string) {
-  console.log("Building page:", path);
+  // console.log("Building page:", path);
   if (!existsSync(path)) {
     console.log("OOOOOPS! Delete from dist:", path);
     return;
@@ -100,7 +100,6 @@ export async function buildPage(path: string) {
     wrappedPageText = wrappedPageText.replace("<DefaultLayout>", "");
     wrappedPageText = wrappedPageText.replace("</DefaultLayout>", "");
     LAYOUTS[resolve(join(DEFAULT_LAYOUT_PATH))].dependents.add(path);
-    console.log("path", path);
     PAGES[path].dependencies.add(resolve(join(DEFAULT_LAYOUT_PATH)));
   }
 
@@ -158,7 +157,6 @@ export async function initializeCache() {
 
 export async function initializeDependencies() {
   for await (const page of Object.keys(PAGES)) {
-    console.log("Page:", page);
     await initializePageDependencies(page);
   }
 }
@@ -195,7 +193,6 @@ export async function initializePages() {
     const newPage: Page = {
       dependencies: new Set(),
     };
-    console.log("p.path", p.path);
     PAGES[p.path] = newPage;
   }
 }
@@ -229,7 +226,7 @@ export async function initializePageDependencies(page: string) {
   }
   if (!hasLayout) {
     PAGES[page].dependencies.add(resolve(join(DEFAULT_LAYOUT_PATH)));
-    LAYOUTS[resolve(join(DEFAULT_LAYOUT_PATH))].dependents.add(page);
+    LAYOUTS[DEFAULT_LAYOUT_PATH].dependents.add(page);
   }
 
   // Snippets
@@ -265,12 +262,10 @@ export async function initializeSnippets() {
 }
 
 export async function handleAssetEvent(event: Deno.FsEvent) {
-  const relativePath = relative(Deno.cwd(), event.paths[0]);
-  console.log(">>>>> Relative path:", relativePath);
   if (event.kind === "create") {
-    await buildPage(relativePath);
+    await buildPage(event.paths[0]);
   } else if (event.kind === "modify") {
-    for await (const path of SNIPPETS[relativePath].dependents) {
+    for await (const path of ASSETS[event.paths[0]].dependents) {
       await buildPage(path);
     }
   } else if (event.kind === "remove") {

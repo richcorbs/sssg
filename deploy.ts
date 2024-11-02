@@ -32,6 +32,9 @@ export async function register(domain: string) {
     config.productionDomain = json.productionDomain;
     Deno.writeTextFileSync("./.sssg.json", JSON.stringify(config));
     console.log("Domain registered successfully:", json.productionDomain);
+  } else if (registrationResponse.status === 409) {
+    const error = await registrationResponse.json();
+    console.log(`\nThere was an error:\n\n${error.message}\n`);
   }
 }
 

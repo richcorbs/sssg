@@ -11,6 +11,7 @@ import {
 import { checkSrcSetup } from "./init.ts";
 import { deploy, register } from "./deploy.ts";
 import { typeByExtension } from "@std/media-types";
+import { debounce } from "jsr:@std/async/debounce";
 
 export const SRC = "src";
 export const DIST = "dist";
@@ -18,14 +19,13 @@ const SSE_SESSIONS: Set<ReadableStreamDefaultController> = new Set();
 
 async function main(): Promise<void> {
   const flags = parseArgs(Deno.args);
-  console.log({ flags });
 
   checkSrcSetup();
 
   if (flags.build) await build();
   else if (flags.dev) {
-    await build();
-    await watch();
+    build();
+    watch();
     serve();
   } else if (flags.register) {
     await register(flags.domain);
@@ -36,9 +36,8 @@ async function main(): Promise<void> {
 }
 
 function serve() {
-  Deno.serve(async (req) => {
+  Deno.serve({ port: 8000 }, async (req) => {
     const url = new URL(req.url);
-    // console.log(req.method.toUpperCase(), url.pathname);
 
     let content: string;
     let contentType: string;
@@ -130,24 +129,22 @@ function serveInjectSSE(content: string): string {
 }
 
 async function watch() {
-  const watcher = Deno.watchFs(SRC);
-  for await (const event of watcher) {
-    console.log(">>>>> Event.path:", event.paths[0]);
+  const handleEvent = debounce(async (event: Deno.FsEvent) => {
     if (["create", "modify", "rename", "remove"].includes(event.kind)) {
       // TODO: rebuild stuff after the event depending on what it is
       for await (const path of event.paths) {
         if (path.includes(resolve(join(SRC, "assets")))) {
           // TODO: rebuild everything
-          handleAssetEvent(event);
+          await handleAssetEvent(event);
         } else if (path.includes(resolve(join(SRC, "layouts")))) {
           // TODO: rebuild dependents
-          handleLayoutEvent(event);
+          await handleLayoutEvent(event);
         } else if (path.includes(resolve(join(SRC, "pages")))) {
           // TODO: rebuild the page
-          handlePageEvent(event);
+          await handlePageEvent(event);
         } else if (path.includes(resolve(join(SRC, "snippets")))) {
           // TODO: rebuild the dependents
-          handleSnippetEvent(event);
+          await handleSnippetEvent(event);
         }
       }
       for (const session of SSE_SESSIONS) {
@@ -155,6 +152,12 @@ async function watch() {
         else session.enqueue(new TextEncoder().encode("data: RELOAD\n\n"));
       }
     }
+  }, 100);
+
+  const watcher = Deno.watchFs(SRC);
+
+  for await (const event of watcher) {
+    handleEvent(event);
   }
 }
 
