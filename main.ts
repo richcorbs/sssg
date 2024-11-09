@@ -2,7 +2,7 @@ import { parseArgs } from "@std/cli/parse-args";
 import { build } from "./build.ts";
 import { checkSrcSetup } from "./init.ts";
 import { deploy, register } from "./deploy.ts";
-import { serve, watch } from "./serve.ts";
+import { serve, watch } from "./hotReload.ts";
 
 async function main(): Promise<void> {
   const flags = parseArgs(Deno.args);
