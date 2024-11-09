@@ -5,6 +5,7 @@
     "jsr:@std/async@*": "1.0.8",
     "jsr:@std/async@^1.0.8": "1.0.8",
     "jsr:@std/cli@^1.0.6": "1.0.6",
+    "jsr:@std/dotenv@*": "0.225.2",
     "jsr:@std/fs@^1.0.4": "1.0.4",
     "jsr:@std/media-types@^1.0.3": "1.0.3",
     "jsr:@std/path@^1.0.6": "1.0.6",
@@ -35,6 +36,9 @@
     },
     "@std/cli@1.0.6": {
       "integrity": "d22d8b38c66c666d7ad1f2a66c5b122da1704f985d3c47f01129f05abb6c5d3d"
+    },
+    "@std/dotenv@0.225.2": {
+      "integrity": "e2025dce4de6c7bca21dece8baddd4262b09d5187217e231b033e088e0c4dd23"
     },
     "@std/fs@1.0.4": {
       "integrity": "2907d32d8d1d9e540588fd5fe0ec21ee638134bd51df327ad4e443aaef07123c",

@@ -1,6 +1,6 @@
+import { DIST } from "./config.ts";
 import { existsSync } from "@std/fs/exists";
 import { zip } from "./zip.ts";
-import { DIST } from "./build.ts";
 
 export async function register(domain: string) {
   if (!existsSync("./.sssg.json")) Deno.writeTextFileSync("./.sssg.json", "{}");

@@ -1,4 +1,4 @@
-import { SRC } from "./main.ts";
+import { SRC } from "./config.ts";
 import { ensureDir } from "@std/fs";
 import { join, resolve } from "@std/path";
 

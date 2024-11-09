@@ -1,3 +1,4 @@
+import { DIST, SRC } from "./config.ts";
 import { walk } from "@std/fs/walk";
 import { existsSync } from "@std/fs/exists";
 import { resolve } from "@std/path/resolve";
@@ -6,8 +7,6 @@ import { ensureDir } from "@std/fs/ensure-dir";
 import { Asset, Layout, Page, Snippet } from "./types.ts";
 import { mdConverter } from "@ptm/mm-mark";
 
-const SRC = "src";
-export const DIST = "dist";
 const DEFAULT_LAYOUT_PATH = resolve(join(SRC, "layouts", "Default.html"));
 const MD = mdConverter();
 
