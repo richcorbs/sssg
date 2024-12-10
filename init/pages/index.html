@@ -1,0 +1,77 @@
+<DefaultLayout>
+  <section class="hero">
+    <div>
+      <h1>this is simple</h1>
+    </div>
+
+    <h3>Get started by editing <code>src/index.html</code>.</h3>
+  </section>
+
+  <section>
+    <div class="grid">
+      <article>
+        <h4>Tips:</h4>
+        <ul>
+          <li>Edit the <code>src/pages/index.html</code> file to change this page. The page should hot reload automatically after you save.</li>
+          <li>Edit the <code>src/layouts/Default.html</code> file to change the default layout.</li>
+          <li>Edit the <code>src/assets/css/custom.css</code> file to change the custom styles. We've made it easy for you to change the <b>brand and accent colors</b>.</li>
+          <li>Add a page in <code>src/pages</code> with just <b>markdown</b>. Make sure it has an extension of <code>.md</code>.</li>
+        </ul>
+      </article>
+      <article>
+        <h4>Other fun stuff:</h4>
+        <div class="grid">
+          <div x-data="AlpineJsApp()" class="flow">
+            <h6>This is an AlpineJS component.</h6>
+            <p class="flex">
+              <button type="button" @click="count -= 1">-</button>
+              <span class="number" x-text="count"></span>
+              <button type="button" @click="count += 1">+</button>
+            </p>
+            <p>You can build components and micro-apps with AlpineJS.</p>
+          </div>
+          <div id="VanJsContainer"></div>
+        </div>
+      </article>
+      <article>
+        <h4>Deploying your site:</h4>
+        <p>Go <a href="deploy.html">here</a> to learn about deploying your site.</article>
+      </article>
+    </div>
+  </section>
+</DefaultLayout>
+
+<script>
+  // AlpineJS
+  const AlpineJsApp = () => {
+    return {
+      count: 0,
+    };
+  };
+</script>
+
+<script>
+  // VanJS component
+  const { button, div, h6, p, span } = van.tags;
+
+  const VanJsComponent = () => {
+    const counter = van.state(0);
+    return div(
+      { class: "flow" },
+      h6("This is a VanJS component."),
+      p(
+        { class: "flex" },
+        button({ type: "button", onclick: () => --counter.val }, "-"),
+        span(
+          { class: "number" },
+          () => counter.val,
+        ),
+        button({ type: "button", onclick: () => ++counter.val }, "+"),
+      ),
+      p("You can build components and micro-apps with VanJS."),
+    );
+  };
+
+  van.add(VanJsContainer, VanJsComponent());
+</script>
+</DefaultLayout>

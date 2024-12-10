@@ -1,0 +1,74 @@
+<DefaultLayout>
+  <section class="grid" style="--pico-grid-column-gap: 4rem">
+    <div style="--c: 1">
+      <h1 style="margin-top: 8rem; text-wrap: balance">
+        There are two ways to deploy your site.
+      </h1>
+    </div>
+    <div style="--c: 1">
+      <img src="/assets/images/launch.svg" alt="" />
+    </div>
+  </section>
+  <section class="grid">
+    <article>
+      <h4>1. Deploy to our servers</h4>
+      <p>
+        Deploying to our servers is the easiest way to get your site online. It
+        involves a single command:<br />
+        <code>sssg --deploy [optional-domain-name]</code>.
+      </p>
+      <ul>
+        <li>TODO: Include about deploying to staging or production.</li>
+        <li>
+          <p>
+            If you want to use a <b>custom domain name</b>, run:<br />
+            <code>sssg --deploy www.my-custom-domain.com</code>.<br />
+            In order for SSL to work properly, you must point your DNS at our
+            servers for the custom domain name that you choose. The IP address
+            is
+            <code>1.1.1.1</code>.
+          </p>
+        </li>
+        <li>
+          <p>
+            If you want to use <b>a subdomain of your choosing</b>, run:<br />
+            <code>sssg --deploy my-subdomain.sssg.live</code><br />
+            where
+            <code>my-subdomain</code> is something you want to use. All
+            subdomains are on the <code>sssg.live</code> domain.
+          </p>
+        </li>
+        <li>
+          <p>
+            If you want to use a <b>random subdomain</b>, run:<br />
+            <code>sssg --deploy</code> and we'll create a subdomain for you.
+          </p>
+        </li>
+      </ul>
+    </article>
+    <article>
+      <div>
+        <h4>2. Manually build and deploy</h4>
+        <p>First you'll have to build the site locally. And then you can deploy it however you like.</p>
+        <ul>
+          <li>
+            Run <code>sssg --build</code> in your project directory to build your
+            site locally in the <code>./dist</code> directory.
+          </li>
+          <li>
+            <p>
+              Run a script of your creation to copy/upload the contents of the
+              <code>./dist</code> directory to the appropriate directory on your
+              server/host.
+            </p>
+          </li>
+          <li
+            <p>
+              You can use scp, rsync, ftp, or any other method that you prefer.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </section>
+</DefaultLayout>

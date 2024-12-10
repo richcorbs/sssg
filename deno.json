@@ -4,6 +4,7 @@
     "dev": "deno run --allow-net --allow-read --allow-write --allow-env --watch --allow-run main.ts --dev",
     "dp": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --deploy --production",
     "ds": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --deploy --staging",
+    "init": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run main.ts --init",
     "register": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --register --domain=domain1.local"
   },
   "imports": {
