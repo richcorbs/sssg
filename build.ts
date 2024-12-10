@@ -66,7 +66,7 @@ export async function buildPage(path: string) {
 
   if (path.startsWith(resolve(join(SRC, "assets")))) {
     let newPath: string = path;
-    newPath = newPath.replace(/^src\//, DIST + "/");
+    newPath = newPath.replace(/\/src\//, "/" + DIST + "/");
     Deno.copyFileSync(path, newPath);
     return;
   }
