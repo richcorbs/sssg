@@ -1,5 +1,5 @@
 import { SRC } from "./config.ts";
-import { copySync,ensureDir, existsSync } from "@std/fs";
+import { copySync, ensureDir, existsSync } from "@std/fs";
 import { join, resolve } from "@std/path";
 
 export async function checkSrcSetup() {
@@ -12,5 +12,5 @@ export async function checkSrcSetup() {
 
 export function copyInitFiles() {
   if (existsSync(SRC)) Deno.removeSync(SRC, { recursive: true });
-  copySync("init", SRC)
+  copySync(import.meta.dirname + "/init", SRC)
 }
