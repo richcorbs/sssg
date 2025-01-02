@@ -261,17 +261,20 @@ export async function initializeSnippets() {
 }
 
 export async function handleAssetEvent(event: Deno.FsEvent) {
-  if (event.kind === "create") {
-    await buildPage(event.paths[0]);
-  } else if (event.kind === "modify") {
-    for await (const path of ASSETS[event.paths[0]].dependents) {
-      await buildPage(path);
-    }
-  } else if (event.kind === "remove") {
-    await build();
-  } else if (event.kind === "rename") {
-    await build();
-  }
+  await build()
+  // if (event.kind === "create") {
+    // await buildPage(event.paths[0]);
+    // await build();
+  // } else if (event.kind === "modify") {
+    // for await (const path of ASSETS[event.paths[0]].dependents) {
+    //   await buildPage(path);
+    // }
+    // await build();
+  // } else if (event.kind === "remove") {
+    // await build();
+  // } else if (event.kind === "rename") {
+    // await build();
+  // }
 }
 
 export async function handleLayoutEvent(event: Deno.FsEvent) {
