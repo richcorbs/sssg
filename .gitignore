@@ -4,3 +4,4 @@ src/*
 .git/*
 .zed/*
 .sssg.json
+sssg_*

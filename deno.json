@@ -5,7 +5,14 @@
     "dp": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --deploy --production",
     "ds": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --deploy --staging",
     "init": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run main.ts --init",
-    "register": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --register --domain=domain1.local"
+    "register": "deno run --allow-net --allow-read --allow-write --allow-run main.ts --register --domain=domain1.local",
+
+    "compile-all": "deno task compile-mac-arm && deno task compile-mac-intel && deno task compile-windows && deno task compile-linux-arm && deno task compile-linux-intel",
+    "compile-mac-arm": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_mac_arm --target aarch64-apple-darwin --include init main.ts",
+    "compile-mac-intel": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_mac_intel --target x86_64-apple-darwin --include init main.ts",
+    "compile-windows": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_windows --target x86_64-pc-windows-msvc --include init main.ts",
+    "compile-linux-arm": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_linux_arm --target aarch64-unknown-linux-gnu --include init main.ts",
+    "compile-linux-intel": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_linux_intel --target x86_64-unknown-linux-gnu --include init main.ts"
   },
   "imports": {
     "@ptm/mm-mark": "jsr:@ptm/mm-mark@^0.2.22",
