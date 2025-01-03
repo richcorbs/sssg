@@ -12,7 +12,16 @@
     "compile-mac-intel": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_mac_intel --target x86_64-apple-darwin --include init main.ts",
     "compile-windows": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_windows --target x86_64-pc-windows-msvc --include init main.ts",
     "compile-linux-arm": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_linux_arm --target aarch64-unknown-linux-gnu --include init main.ts",
-    "compile-linux-intel": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_linux_intel --target x86_64-unknown-linux-gnu --include init main.ts"
+    "compile-linux-intel": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_linux_intel --target x86_64-unknown-linux-gnu --include init main.ts",
+
+    "copy-binaries-to-web": "deno task copy-mac-arm-to-web && deno task copy-mac-intel-to-web && deno task copy-windows-to-web && deno task copy-linux-arm-to-web && deno task copy-linux-intel-to-web",
+    "copy-mac-arm-to-web": "cp ./sssg_mac_arm ../sssg-web/src/assets/downloads/mac_arm/sssg",
+    "copy-mac-intel-to-web": "cp ./sssg_mac_intel ../sssg-web/src/assets/downloads/mac_intel/sssg",
+    "copy-windows-to-web": "cp ./sssg_windows.exe ../sssg-web/src/assets/downloads/windows/sssg.exe",
+    "copy-linux-arm-to-web": "cp ./sssg_linux_arm ../sssg-web/src/assets/downloads/linux_arm/sssg",
+    "copy-linux-intel-to-web": "cp ./sssg_linux_intel ../sssg-web/src/assets/downloads/linux_intel/sssg",
+
+    "compile-and-copy": "deno task compile-all && deno task copy-binaries-to-web"
   },
   "imports": {
     "@ptm/mm-mark": "jsr:@ptm/mm-mark@^0.2.22",

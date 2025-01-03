@@ -2,6 +2,8 @@ import { DIST } from "./config.ts";
 import { existsSync } from "@std/fs/exists";
 import { zip } from "./zip.ts";
 
+export const API_URL = import.meta.url.includes("/Users/rich/Code") ? "http://domains.local:8000" : "https://api.sssg.dev";
+
 export async function register(domain: string) {
   if (!existsSync("./.sssg.json")) Deno.writeTextFileSync("./.sssg.json", "{}");
   const rawConfig = Deno.readTextFileSync("./.sssg.json");
@@ -18,7 +20,7 @@ export async function register(domain: string) {
     Deno.exit(1);
   }
   const registrationResponse: Response = await fetch(
-    "http://domains.local:8000/api/register?domain=" + domain,
+    `${API_URL}/api/register?domain=` + domain,
     {
       method: "POST",
       body: JSON.stringify({}),
@@ -51,7 +53,7 @@ export async function deploy(
 
   if (!config.token) {
     const registrationResponse: Response = await fetch(
-      "http://domains.local:8000/api/register",
+      `${API_URL}/api/register`,
       {
         method: "POST",
         body: JSON.stringify({}),
@@ -99,7 +101,7 @@ export async function deploy(
   form.append("file", uploadFile);
   form.append("token", config.token);
   form.append("domain", deployDomain);
-  const response = await fetch("http://domains.local:8000/api/domain/upload", {
+  const response = await fetch(`${API_URL}/api/domain/upload`, {
     method: "POST",
     body: form,
   });
