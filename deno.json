@@ -14,14 +14,14 @@
     "compile-linux-arm": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_linux_arm --target aarch64-unknown-linux-gnu --include init main.ts",
     "compile-linux-intel": "deno compile --allow-read --allow-env --allow-write --allow-net --output sssg_linux_intel --target x86_64-unknown-linux-gnu --include init main.ts",
 
-    "copy-binaries-to-web": "deno task copy-mac-arm-to-web && deno task copy-mac-intel-to-web && deno task copy-windows-to-web && deno task copy-linux-arm-to-web && deno task copy-linux-intel-to-web",
-    "copy-mac-arm-to-web": "cp ./sssg_mac_arm ../sssg-web/src/assets/downloads/mac_arm/sssg",
-    "copy-mac-intel-to-web": "cp ./sssg_mac_intel ../sssg-web/src/assets/downloads/mac_intel/sssg",
-    "copy-windows-to-web": "cp ./sssg_windows.exe ../sssg-web/src/assets/downloads/windows/sssg.exe",
-    "copy-linux-arm-to-web": "cp ./sssg_linux_arm ../sssg-web/src/assets/downloads/linux_arm/sssg",
-    "copy-linux-intel-to-web": "cp ./sssg_linux_intel ../sssg-web/src/assets/downloads/linux_intel/sssg",
+    "copy-binaries-to-server": "deno task copy-mac-arm-to-server && deno task copy-mac-intel-to-server && deno task copy-windows-to-server && deno task copy-linux-arm-to-server && deno task copy-linux-intel-to-server",
+    "copy-linux-arm-to-server": "scp sssg_linux_arm sssg:/var/www/www.sssg.dev/assets/downloads/linux_arm/sssg",
+    "copy-linux-intel-to-server": "scp sssg_linux_intel sssg:/var/www/www.sssg.dev/assets/downloads/linux_intel/sssg",
+    "copy-mac-arm-to-server": "scp sssg_mac_arm sssg:/var/www/www.sssg.dev/assets/downloads/mac_arm/sssg",
+    "copy-mac-intel-to-server": "scp sssg_mac_intel sssg:/var/www/www.sssg.dev/assets/downloads/mac_intel/sssg",
+    "copy-windows-to-server": "scp sssg_windows.exe sssg:/var/www/www.sssg.dev/assets/downloads/windows/sssg.exe",
 
-    "compile-and-copy": "deno task compile-all && deno task copy-binaries-to-web"
+    "compile-and-copy": "deno task compile-all && deno task copy-binaries-to-server"
   },
   "imports": {
     "@ptm/mm-mark": "jsr:@ptm/mm-mark@^0.2.22",
