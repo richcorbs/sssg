@@ -101,10 +101,12 @@ export async function deploy(
   form.append("file", uploadFile);
   form.append("token", config.token);
   form.append("domain", deployDomain);
+  console.log("Uploading...")
   const response = await fetch(`${API_URL}/api/domain/upload`, {
     method: "POST",
     body: form,
   });
+  console.log("Done uploading...")
   console.log("response", response);
   if (existsSync(zipFilename)) {
     await Deno.remove(zipFilename, { recursive: true });
