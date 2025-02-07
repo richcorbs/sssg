@@ -87,9 +87,7 @@ export async function deploy(
     config.productionDomain !== "" &&
     deployDomain !== config.productionDomain
   ) {
-    console.log(
-      "You can't deploy to a different production domain than the one you registered with",
-    );
+    console.log("You can't deploy to a different production domain than the one you registered with");
     Deno.exit(1);
   }
 
@@ -107,7 +105,7 @@ export async function deploy(
     body: form,
   });
   console.log("Done uploading...")
-  console.log("response", response);
+  console.log("response", response.status);
   if (existsSync(zipFilename)) {
     await Deno.remove(zipFilename, { recursive: true });
   }
